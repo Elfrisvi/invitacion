@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Invitación Paola Ruiz</title>
+    <style>
+        /* 1. Reset para que no haya márgenes raros en el cel */
+        * { box-sizing: border-box; }
+        
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #0c1a40; /* Azul oscuro de fondo */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            font-family: sans-serif;
+        }
+
+        /* 2. Contenedor principal */
+        .tarjeta {
+            width: 100%;
+            max-width: 450px; /* Tamaño máximo de celular */
+            height: 100vh;
+            position: relative;
+            perspective: 1500px;
+        }
+
+        /* 3. Estilo base para las capas */
+        .capa {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-size: contain; /* Ajusta la imagen sin cortarla */
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: transform 1.2s ease, opacity 0.8s;
+        }
+
+        /* PORTADA */
+        .capa-portada {
+            /* IMPORTANTE: Verifica que el nombre del archivo sea EXACTO */
+            background-image: url('portada.jpeg');
+            z-index: 20;
+            transform-origin: left center;
+            background-color: #0c1a40;
+        }
+
+        /* INTERIOR */
+        .capa-interior {
+            background-image: url('interior.jpeg');
+            z-index: 10;
+        }
+
+        /* Clase para abrir (Se activa con JS) */
+        .abierta {
+            transform: rotateY(-110deg);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* 4. BOTONES (Ajustados a la imagen que enviaste) */
+        .zona-botones {
+            position: absolute;
+            bottom: 25%; /* Sube o baja esto para calzar los iconos */
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 30px; /* Espacio entre botones */
+            z-index: 200;
+            padding: 30px 10px;
+        }
+
+        .btn-invisible {
+            width: 100px;  /* Tamaño del círculo */
+            height: 100px;
+            border-radius: 70%;
+            /* DEBUG: Cambia 0.4 a 0 para que no se vea el color rojo al final */
+            background-color: rgba(0, 0, 0, 0); 
+            text-decoration: none;
+            display: block;
+        }
+
+        .hint {
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-size: 14px;
+            z-index: 30;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="tarjeta" id="contenedorInvitacion" onclick="abrirInvitacion()">
+        <div id="textoGuia" class="hint">Toca para abrir</div>
+        
+        <div id="portada" class="capa capa-portada"></div>
+
+        <div class="capa capa-interior">
+            <div class="zona-botones">
+                <a href="https://maps.app.goo.gl/n2CohqK25aVSavry8?g_st=iw" target="_blank" class="btn-invisible"></a>
+                <a href="https://wa.me/56933024067" target="_blank" class="btn-invisible"></a>
+                <a href="guia.jpeg" target="_blank" class="btn-invisible"></a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function abrirInvitacion() {
+            // Añadimos la clase 'abierta' a la portada
+            document.getElementById('portada').classList.add('abierta');
+            // Ocultamos el texto de ayuda
+            document.getElementById('textoGuia').style.opacity = '0';
+        }
+    </script>
+
+</body>
+</html>
